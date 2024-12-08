@@ -9,6 +9,9 @@ const RoomSchema = new mongoose.Schema({
     participants: [
         {
             rollNo: { type: String },
+            department: { type: String, required: true }, // Department of the participant
+            year: { type: String, required: true }, // Academic year of the participant
+            photoUrl: { type: String }, // Photo URL of the participant
             joinTime: { type: Date, default: Date.now },
         },
     ],
