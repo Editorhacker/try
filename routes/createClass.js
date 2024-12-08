@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Room = require("../models/Room"); // Import the Room model
+const Degree = require("../models/Degree");
 
 module.exports = (io) => {
     // Function to generate a random 5-character alphanumeric string
@@ -151,11 +152,18 @@ module.exports = (io) => {
     });
 
     // Mock validation function
-    async function validateStudent(rollNumber) {
-        // Replace this logic with real validation (e.g., database query)
-        const validRollNumbers = ["247503", "247504", "247505"]; // Example roll numbers
-        return validRollNumbers.includes(rollNumber);
+
+async function validateStudent(rollNumber) {
+    try {
+        // Check if the roll number exists in the Degree collection
+        const student = await Degree.findOne({ rollno: rollNumber });
+        return !!student; // Return true if found, false otherwise
+    } catch (error) {
+        console.error("Error validating student:", error);
+        return false; // Return false in case of an error
     }
+}
+
 
     return router;
 };
