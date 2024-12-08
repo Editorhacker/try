@@ -165,7 +165,7 @@ async function validateStudent(rollNumber) {
         return student; // Return true if found, false otherwise
     } catch (error) {
         console.error("Error validating student:", error);
-        return false; // Return false in case of an error
+        return null; // Return false in case of an error
     }
 }
 
