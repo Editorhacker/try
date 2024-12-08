@@ -162,7 +162,7 @@ async function validateStudent(rollNumber) {
     try {
         // Check if the roll number exists in the Degree collection
         const student = await Degree.findOne({ rollno: rollNumber });
-        return !!student; // Return true if found, false otherwise
+        return student; // Return true if found, false otherwise
     } catch (error) {
         console.error("Error validating student:", error);
         return false; // Return false in case of an error
